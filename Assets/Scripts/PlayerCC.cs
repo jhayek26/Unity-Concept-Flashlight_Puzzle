@@ -6,7 +6,6 @@ public class PlayerCC : MonoBehaviour
 {
     Camera cam;
     CharacterController controller;
-    //private GameObject hand; //Not used for this project
 
     bool jumping = false;
     bool sprinting = false;
@@ -49,10 +48,6 @@ public class PlayerCC : MonoBehaviour
 
     [SerializeField] LayerMask playerMask;
 
-    //Used for 3rd person:
-    //public float rotationSpeed = 20; //Not used for this project
-
-    //public bool HasFlashlight = false;
     [SerializeField] Light flashlightBeam;
 
     // Start is called before the first frame update
@@ -112,14 +107,6 @@ public class PlayerCC : MonoBehaviour
         }
 
         vforce = -controller.stepOffset; //Add a tiny bit of downward force by default to keep the .isGrounded Character Controller checks more stable
-
-        //Un-comment this code to allow the flashlight to be enabled/disable when pressing the F key
-        /*
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            flashlightBeam.enabled = !flashlightBeam.enabled;
-        }
-        */
 
         if (!grounded)
         {
@@ -222,6 +209,7 @@ public class PlayerCC : MonoBehaviour
             }
 
             inputs = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * inputs * (sprinting ? moveSpeed * sprintMult : moveSpeed);
+            
             //Camera bobbing
             if (cameraBobbing && grounded)
             {

@@ -124,14 +124,6 @@ public class ComboEnterTriggerBox : MonoBehaviour
             {
                 transitionTimer += Time.deltaTime / transitionDuration;
                 mainCam.transform.position = Vector3.Lerp(origCamPos, destCamPos, transitionCurve.Evaluate(transitionTimer));
-                /*
-                    TODO:
-                    The interpolation between the two quaternions can be disorientating depending on where the player angled their camera.
-                    This may create unintended feelings of motion sickness in more extreme cases. As such, finding a way to mitigate such feelings must be looked into. 
-                    One possible solution could be to rotate each axis individually in a sequence. Another solution could be to only allow changing of states if the player is actually facing the door.
-                    SOLVED: 
-                    Now the changing of states can only occur if the angle between the direction the player's camera is facing and the direction of the target rotation is within an acceptable range
-                */
                 mainCam.transform.rotation = Quaternion.Slerp(origCamRot, destCamRot, transitionCurve.Evaluate(transitionTimer));
                 doorSpotLight.intensity = lightIntensity(transitionTimer);
             }
