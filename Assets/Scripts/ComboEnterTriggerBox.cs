@@ -83,8 +83,16 @@ public class ComboEnterTriggerBox : MonoBehaviour
             return; //Early return to prevent the other conditionals from being checked.
         }
 
+        /* Check if:
+         * The player is able to switch to/from editing the door combo (canSwitch)
+         * The player is not already in the middle of switching to/from editing the door combo (!switchingStates)
+         * The player has pressed the 'E' key (Input.GetKeyDown(KeyCode.E))
+         */
         if (canSwitch && !switchingStates && Input.GetKeyDown(KeyCode.E))
         {   
+            //Calculate the angle between the direction the player's camera is facing and the direction of the fixed camera rotation.
+            //If the angle between these two directions is within an acceptable range, allow the player to switch states.
+
             float angle = Vector3.Angle(mainCam.transform.forward, Quaternion.Euler(fixedCamRot) * Vector3.forward);
 
             if (angle < maxTriggerAngle)
