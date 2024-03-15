@@ -60,7 +60,7 @@ public class SecretWallMaker : MonoBehaviour
 
         for (int i = 0; i < secretMats.Length; i++)
         {
-            secretWallCounts[i] = Random.Range(1, 5); //Generate a number of secret walls between 1 and 4
+            secretWallCounts[i] = Random.Range(1, 6); //Generate a number of secret walls between 1 and 5
 
             for (int j = 0; j < secretWallCounts[i]; j++)
             {
